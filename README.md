@@ -1,2 +1,2 @@
 # jingdongspider
-get pictures and conmments of the goods 
+This project mainly climbs Jingdong merchandise pictures and user reviews.
