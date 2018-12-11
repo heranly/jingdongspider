@@ -12,14 +12,13 @@ import json
 class JingdongPipeline(object):
     def process_item(self, item,spider):
         #文件保存本地的位置
-        if not os.path.exists('E:\京东商品爬取\jingdong'):
-            os.mkdir('E:\京东商品爬取\jingdong')
-        file_path1 = '{0}/{1}'.format('E:\京东商品爬取\jingdong',item['filename'])
+		path = 'E:\京东商品爬取\jingdong'
+        if not os.path.exists(path):
+            os.mkdir(path)
+        file_path1 = '{0}/{1}'.format(path,item['filename'])
         if not os.path.exists(file_path1):
             os.mkdir(file_path1)
-        # file_path1 = '{0}/{1}'.format(file_path0, item['filename'])
-        # if not os.path.exists(file_path1):
-        #     os.mkdir(file_path1)
+
         if 'intruduce' in item:
             print('-------------开始写商品图片和id-------------')
             file_path3 = '{0}/{1}.{2}'.format(file_path1, '商品介绍', 'txt')
@@ -31,6 +30,7 @@ class JingdongPipeline(object):
             file_path2 = '{0}/{1}'.format(file_path1, '商品图片')
             if not os.path.exists(file_path2):
                 os.mkdir(file_path2)
+			#将不同款式的商品id写入并去重
             id_path = '{0}/{1}'.format(file_path2,'商品id及款式.txt')
             if not os.path.exists(id_path):
                 with open(id_path, 'a+') as f:
